@@ -45,7 +45,7 @@ def make_melon_types():
     muskmelon.add_pairing("mint")
     casaba.add_pairing("strawberries")
     casaba.add_pairing("mint")
-    crenshaw.add_pairing("proscuitto")
+    crenshaw.add_pairing("prosciutto")
 
     all_melon_types = [yellow_watermelon, muskmelon, casaba, crenshaw]
 
@@ -78,8 +78,21 @@ def make_melon_type_lookup(melon_types):
 class Melon(object):
     """A melon in a melon harvest."""
 
-    # Fill in the rest
-    # Needs __init__ and is_sellable methods
+    def __init__(self, code, shape_rating, color_rating, from_field, harvested_by):
+        """Initialize a melon."""
+        self.code = code
+        self.shape_rating = shape_rating
+        self.color_rating = color_rating
+        self.from_field = from_field
+        self.harvested_by = harvested_by
+
+    def is_sellable(self):
+        """Determine if melon is saleable."""
+        return self.shape_rating > 5 and self.color_rating > 5 and self.from_field != 3
+    
+
+# a_melon = Melon("yw", 3, 5, 4, "Sheila")
+# a_melon.is_sellable()
 
 def make_melons(melon_types):
     """Returns a list of Melon objects."""
