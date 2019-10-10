@@ -64,7 +64,12 @@ def make_melon_type_lookup(melon_types):
 
     # Fill in the rest
 
-    
+    melon_code_dict = {}
+
+    for melon in melon_types:
+        melon_code_dict[melon.code] = melon.name
+
+    return melon_code_dict
 
 ############
 # Part 2   #
