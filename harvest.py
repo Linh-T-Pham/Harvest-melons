@@ -134,5 +134,31 @@ def get_sellability_report(melons):
             status = "(NOT SELLABLE)"
         print(f"Harvested by {melon.harvested_by} from Field {melon.from_field} {status}")
 
+def get_melons_from_file(path):
+    file = open(path)
+    harvested_melons = []
+
+    melon_types = make_melon_types()
+    melons_by_id = make_melon_type_lookup(melon_types)
+
+    for line in file:
+        words = line.split()
+        shape_rating = words[1]
+        color_rating = words[3]
+        melon_type = words[5]
+        harvested_by = words[8]
+        from_field = words[-1]
+
+        new_melon = Melon(melons_by_id[melon_type], shape_rating, color_rating, from_field, harvested_by)
+        harvested_melons.append(new_melon)
+
+    file.close()
+
+    return harvested_melons
+
+print(get_melons_from_file('harvest_log.txt'))
 
 
+
+# words = ["Shape", 4, "Color", 6, "Type", "musk", "Harvested", "by", "Sheila", "Field", "#", 52]
+#melon_1 = Melon(melons_by_id["yw"], 8, 7, 2, "Sheila")
